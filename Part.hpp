@@ -17,7 +17,7 @@ using namespace std;
 
 class Part {
 public:
-	Part(const istringstream* iss);
+	Part(istringstream* iss);
 	virtual ~Part();
 	char map(int x);
 	char mapToAlphabet(int x);

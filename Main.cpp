@@ -12,9 +12,10 @@ using namespace std;
 int main(int argc, char **argv) {
 //	char *args = *argv;
 
-	//Add the rotors
+//Add the rotors
 	vector<Rotor *> rotors;
 	string mappings;
+
 	for (int i = 1; i < argc - 1; i++) {
 
 		ifstream rotorfile(argv[i]);
@@ -22,16 +23,9 @@ int main(int argc, char **argv) {
 			getline(rotorfile, mappings);
 			istringstream iss(mappings);
 
-//			vector<int> inputs;
-//			int tmp;
-//
-//			while (iss >> tmp) {
-//				inputs.push_back(tmp);
-//			}
-
 			//create rotor pointer
 			Rotor* rotor = new Rotor(&iss);
-			//rotors.push_back(rotor);
+			rotors.push_back(rotor);
 
 			rotorfile.close();
 		} else {
@@ -40,12 +34,11 @@ int main(int argc, char **argv) {
 
 	}
 
-	//DEBUG: Print rotors
-	/*for (auto i = mappings.begin(); i != mappings.end();
+	for (vector<Rotor *>::const_iterator i = rotors.begin(); i != rotors.end();
 			++i) {
-		Rotor r = *i;
-		r.printMappings();
+		Rotor* r = *i;
+		(*r).printMappings();
 	}
-*/
+
 	return 0;
 }

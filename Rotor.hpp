@@ -15,7 +15,7 @@ using namespace std;
 
 class Rotor : public Part{
 public:
-	Rotor(const istringstream* iss);
+	Rotor(istringstream* iss);
 	virtual ~Rotor();
 };
 

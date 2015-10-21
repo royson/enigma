@@ -9,12 +9,12 @@
 
 using namespace std;
 
-Part::Part(const istringstream* iss) {
-//	int tmp;
-//
-//	while ((*iss) >> tmp) {
-//		mappings.push_back(tmp);
-//	}
+Part::Part(istringstream* iss) {
+	int tmp;
+
+	while ((*iss) >> tmp) {
+		mappings.push_back(tmp);
+	}
 }
 
 Part::~Part() {
@@ -36,6 +36,7 @@ void Part::printMappings() {
 		int x = *i;
 		cout << mapToAlphabet(x) << ' ';
 	}
+	cout << endl;
 }
 
 char Part::map(int x){

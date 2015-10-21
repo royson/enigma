@@ -7,7 +7,7 @@
 
 #include "Rotor.hpp"
 
-Rotor::Rotor(const istringstream* iss):Part(iss) {}
+Rotor::Rotor(istringstream* iss):Part(iss) {}
 
 Rotor::~Rotor() {
 	// TODO Auto-generated destructor stub
