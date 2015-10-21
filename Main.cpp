@@ -5,6 +5,8 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <cstdlib>
+
 #include "Rotor.hpp"
 #include "Plugboard.hpp"
 
@@ -15,7 +17,7 @@ istringstream* readPart(const char* filepath) {
 	ifstream filePart(filepath);
 	if (filePart.is_open()) {
 		getline(filePart, mappings);
-		shared_ptr<istringstream> iss = new istringstream(mappings);
+		shared_ptr<istringstream> iss (new istringstream(mappings));
 		return iss;
 	} else {
 		cerr << "Unable to open " << filepath << endl;
@@ -60,7 +62,7 @@ int main(int argc, char **argv) {
 	while(cin >> ch){
 		if(ch < ALPHABET_BEGIN || ch >= ALPHABET_BEGIN+NUMBER_OF_ALPHABETS){
 			cerr << "Please enter a capital letter." << endl;
-			exit(EXIT_PROCESS);
+			exit(EXIT_FAILURE);
 		}
 	}
 
