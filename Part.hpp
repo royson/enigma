@@ -8,7 +8,6 @@
 #ifndef PART_HPP_
 #define PART_HPP_
 
-#include <sstream>
 #include <vector>
 #include <iostream>
 
@@ -17,7 +16,7 @@ using namespace std;
 
 class Part {
 public:
-	Part(istringstream& iss);
+	Part(vector<int> inputs);
 	virtual ~Part();
 	char map(int x);
 	char mapToAlphabet(int x);

@@ -9,12 +9,8 @@
 
 using namespace std;
 
-Part::Part(istringstream& iss) {
-	int tmp;
-
-	while (iss >> tmp) {
-		mappings.push_back(tmp);
-	}
+Part::Part(vector<int> inputs) {
+	mappings.swap(inputs);
 }
 
 Part::~Part() {

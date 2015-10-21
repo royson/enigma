@@ -22,8 +22,15 @@ int main(int argc, char **argv) {
 			getline(rotorfile, mappings);
 			istringstream iss(mappings);
 
+			vector<int> inputs;
+			int tmp;
+
+			while (iss >> tmp) {
+				inputs.push_back(tmp);
+			}
+
 			//create rotor
-			Rotor rotor(iss);
+			Rotor rotor(inputs);
 			//rotors.push_back(rotor);
 
 			rotorfile.close();
