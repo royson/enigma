@@ -46,6 +46,6 @@ char Part::map(int x){
 char Part::reflect(int x) {
 	// TODO throw exception when x < 0
 	// TODO REPLACE MAGIC NUMBERS
-	return mapToAlphabet((x + 13) % 26);
+	return mapToAlphabet((x + ALPHABET_BEGIN) % NUMBER_OF_ALPHABETS);
 }
 

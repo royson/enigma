@@ -15,7 +15,7 @@ istringstream* readPart(const char* filepath) {
 	ifstream filePart(filepath);
 	if (filePart.is_open()) {
 		getline(filePart, mappings);
-		istringstream* iss = new istringstream(mappings);
+		shared_ptr<istringstream> iss = new istringstream(mappings);
 		return iss;
 	} else {
 		cerr << "Unable to open " << filepath << endl;
@@ -46,12 +46,23 @@ int main(int argc, char **argv) {
 		Rotor* r = *i;
 		(*r).printMappings();
 	}
+	//END_DEBUG
 
 	//Add the plugboard
 	Plugboard* plugboard = new Plugboard(readPart(argv[pbArg]));
 
 	//DEBUG: Print plugboard
 	(*plugboard).printMappings();
+	//END_DEBUG
+
+	//Accept input
+	char ch;
+	while(cin >> ch){
+		if(ch < ALPHABET_BEGIN || ch >= ALPHABET_BEGIN+NUMBER_OF_ALPHABETS){
+			cerr << "Please enter a capital letter." << endl;
+			exit(EXIT_PROCESS);
+		}
+	}
 
 	return 0;
 }

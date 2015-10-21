@@ -12,6 +12,9 @@
 #include <vector>
 #include <iostream>
 
+//Constants
+const int ALPHABET_BEGIN = 65;
+const int NUMBER_OF_ALPHABETS = 26;
 
 using namespace std;
 
