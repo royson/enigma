@@ -8,16 +8,14 @@
 #ifndef ROTOR_HPP_
 #define ROTOR_HPP_
 
-#include <vector>
+#include <sstream>
 #include "Part.hpp"
-
 
 using namespace std;
 
-class Rotor: public Part {
+class Rotor : public Part{
 public:
-	Rotor(vector<int> inputs);
-
+	Rotor(const istringstream* iss);
 	virtual ~Rotor();
 };
 

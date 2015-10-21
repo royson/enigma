@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
 //	char *args = *argv;
 
 	//Add the rotors
-	vector<Rotor> rotors;
+	vector<Rotor *> rotors;
 	string mappings;
 	for (int i = 1; i < argc - 1; i++) {
 
@@ -22,15 +22,15 @@ int main(int argc, char **argv) {
 			getline(rotorfile, mappings);
 			istringstream iss(mappings);
 
-			vector<int> inputs;
-			int tmp;
+//			vector<int> inputs;
+//			int tmp;
+//
+//			while (iss >> tmp) {
+//				inputs.push_back(tmp);
+//			}
 
-			while (iss >> tmp) {
-				inputs.push_back(tmp);
-			}
-
-			//create rotor
-			Rotor rotor(inputs);
+			//create rotor pointer
+			Rotor* rotor = new Rotor(&iss);
 			//rotors.push_back(rotor);
 
 			rotorfile.close();
