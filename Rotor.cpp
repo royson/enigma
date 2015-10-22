@@ -17,6 +17,8 @@ Rotor::~Rotor() {
 }
 
 char Rotor::map(char x, bool direction) {
+	//cout << "ROTATION: " << rotation << endl;
+
 	int mapIndex = mapToNumber(x);
 	if (direction) {
 		return mapToAlphabet(

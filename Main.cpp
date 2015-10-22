@@ -119,7 +119,10 @@ int main(int argc, char **argv) {
 		if (rotors.size() > 0) {
 			int rotateRotor = 0;
 			while (rotors[rotateRotor]->rotate()) {
-				rotateRotor = (++rotateRotor) % rotors.size();
+				rotateRotor = (++rotateRotor);
+				if(rotateRotor >= rotors.size()){
+					break;
+				}
 			}
 		}
 
