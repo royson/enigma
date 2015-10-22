@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Part::Part(istringstream* iss) {
+Part::Part(tr1::shared_ptr<istringstream> iss) {
 	int tmp;
 
 	while ((*iss) >> tmp) {

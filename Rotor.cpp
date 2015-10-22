@@ -7,7 +7,7 @@
 
 #include "Rotor.hpp"
 
-Rotor::Rotor(istringstream* iss) :
+Rotor::Rotor(tr1::shared_ptr<istringstream> iss) :
 		Part(iss) {
 	rotation = 0;
 }

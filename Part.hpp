@@ -11,13 +11,14 @@
 #include <sstream>
 #include <vector>
 #include <iostream>
+#include <tr1/memory>
 #include "Util.hpp"
 
 using namespace std;
 
 class Part {
 public:
-	Part(istringstream* iss);
+	Part(tr1::shared_ptr<istringstream> iss);
 	virtual ~Part();
 	void printMappings();
 	vector<int> getMappings();

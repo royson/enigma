@@ -1,6 +1,8 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <cstdlib>
+#include <tr1/memory>
 
 #ifndef UTIL_HPP_
 #define UTIL_HPP_
@@ -18,6 +20,6 @@ const bool BACKWARD = false;
 char mapToAlphabet(int x);
 int mapToNumber(char x);
 int reflect(int x);
-istringstream* readPart(const char* filepath);
+tr1::shared_ptr<istringstream> readPart(const char* filepath);
 
 #endif /* UTIL_HPP_ */

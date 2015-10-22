@@ -15,7 +15,7 @@ using namespace std;
 
 class Rotor: public Part {
 public:
-	Rotor(istringstream* iss);
+	Rotor(tr1::shared_ptr<istringstream> iss);
 	virtual ~Rotor();
 	char map(char x, bool direction);
 	bool rotate();

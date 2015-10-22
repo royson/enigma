@@ -7,7 +7,7 @@
 
 #include "Plugboard.hpp"
 
-Plugboard::Plugboard(istringstream* iss):Part(iss) {}
+Plugboard::Plugboard(tr1::shared_ptr<istringstream> iss):Part(iss) {}
 
 Plugboard::~Plugboard() {}
 

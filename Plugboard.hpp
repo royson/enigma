@@ -15,7 +15,7 @@ using namespace std;
 
 class Plugboard: public Part {
 public:
-	Plugboard(istringstream* iss);
+	Plugboard(tr1::shared_ptr<istringstream> iss);
 	virtual ~Plugboard();
 	char map(char x);
 };

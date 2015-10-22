@@ -1,6 +1,5 @@
-#include <cstdlib>
+
 #include "Util.hpp"
-#include <tr1/memory>
 
 using namespace std;
 
@@ -18,14 +17,14 @@ int reflect(int x) {
 	return (x + REFLECT_FORWARD) % NUMBER_OF_ALPHABETS;
 }
 
-istringstream* readPart(const char* filepath) {
+tr1::shared_ptr<istringstream> readPart(const char* filepath) {
 	string mappings;
 	ifstream filePart(filepath);
 	if (filePart.is_open()) {
 		getline(filePart, mappings);
 
-		tr1::shared_ptr<istringstream> iss = new istringstream(
-				mappings);
+		tr1::shared_ptr<istringstream> iss (new istringstream(
+				mappings));
 		return iss;
 	} else {
 		cerr << "Unable to open " << filepath << endl;
