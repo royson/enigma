@@ -6,24 +6,14 @@
 #include <vector>
 #include <string>
 #include <cstdlib>
+#include <memory>
 
 #include "Rotor.hpp"
 #include "Plugboard.hpp"
 
 using namespace std;
 
-istringstream* readPart(const char* filepath) {
-	string mappings;
-	ifstream filePart(filepath);
-	if (filePart.is_open()) {
-		getline(filePart, mappings);
-		shared_ptr<istringstream> iss (new istringstream(mappings));
-		return iss;
-	} else {
-		cerr << "Unable to open " << filepath << endl;
-		exit(EXIT_FAILURE);
-	}
-}
+int DEBUG = false;
 
 int main(int argc, char **argv) {
 	//Check if there is an least a plugboard
@@ -38,31 +28,65 @@ int main(int argc, char **argv) {
 	int pbArg = argc - 1;
 
 	for (int i = 1; i < pbArg; i++) {
+		istringstream* iss = readPart(argv[i]);
 		Rotor* rotor = new Rotor(readPart(argv[i]));
+		delete iss;
 		rotors.push_back(rotor);
 	}
 
-	//DEBUG: Print rotors
-	for (vector<Rotor *>::const_iterator i = rotors.begin(); i != rotors.end();
-			++i) {
-		Rotor* r = *i;
-		(*r).printMappings();
+	if (DEBUG) {
+		for (vector<Rotor *>::const_iterator i = rotors.begin();
+				i != rotors.end(); ++i) {
+			Rotor* r = *i;
+			(*r).printMappings();
+		}
 	}
-	//END_DEBUG
 
 	//Add the plugboard
-	Plugboard* plugboard = new Plugboard(readPart(argv[pbArg]));
+	istringstream* iss = readPart(argv[pbArg]);
+	Plugboard* plugboard = new Plugboard(iss);
+	delete iss;
 
-	//DEBUG: Print plugboard
-	(*plugboard).printMappings();
-	//END_DEBUG
+	if (DEBUG) {
+		(*plugboard).printMappings();
+	}
 
 	//Accept input
 	char ch;
-	while(cin >> ch){
-		if(ch < ALPHABET_BEGIN || ch >= ALPHABET_BEGIN+NUMBER_OF_ALPHABETS){
+	while (cin >> ch) {
+		if (ch < ALPHABET_BEGIN || ch >= ALPHABET_BEGIN + NUMBER_OF_ALPHABETS) {
 			cerr << "Please enter a capital letter." << endl;
 			exit(EXIT_FAILURE);
+		} else {
+			if (DEBUG) {
+				cout << "Input: " << ch << endl;
+			}
+			//Rotors (Forward) (SINGLE ROUTER ONLY)
+			for (int i = 0; i < rotors.size(); i++) {
+				ch = rotors[i]->map(ch, FORWARD);
+				if (DEBUG) {
+					cout << "After rotor " << i << ": " << ch << endl;
+				}
+			}
+
+			//Reflect
+			int reflectIndex = mapToNumber(ch);
+			reflectIndex = reflect(reflectIndex);
+			ch = mapToAlphabet(reflectIndex);
+			if (DEBUG) {
+				cout << "After reflect: " << ch << endl;
+			}
+
+			//Rotors (Inverse)
+			for (int i = 0; i < rotors.size(); i++) {
+				ch = rotors[i]->map(ch, BACKWARD);
+				if (DEBUG) {
+					cout << "After rotor inverse " << i << ": " << ch << endl;
+				}
+			}
+
+			cout << ch << endl;
+
 		}
 	}
 

@@ -17,6 +17,7 @@ class Rotor : public Part{
 public:
 	Rotor(istringstream* iss);
 	virtual ~Rotor();
+	char map(char x, bool direction);
 };
 
 #endif /* ROTOR_HPP_ */

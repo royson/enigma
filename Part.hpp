@@ -11,10 +11,7 @@
 #include <sstream>
 #include <vector>
 #include <iostream>
-
-//Constants
-const int ALPHABET_BEGIN = 65;
-const int NUMBER_OF_ALPHABETS = 26;
+#include "Util.hpp"
 
 using namespace std;
 
@@ -22,12 +19,9 @@ class Part {
 public:
 	Part(istringstream* iss);
 	virtual ~Part();
-	char map(int x);
-	char mapToAlphabet(int x);
 	void printMappings();
-	char reflect(int x);
 	vector<int> getMappings();
-private:
+protected:
 	vector<int> mappings;
 };
 

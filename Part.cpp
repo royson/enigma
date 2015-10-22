@@ -6,6 +6,7 @@
  */
 
 #include "Part.hpp"
+#include "Util.hpp"
 
 using namespace std;
 
@@ -25,11 +26,6 @@ vector<int> Part::getMappings() {
 	return mappings;
 }
 
-char Part::mapToAlphabet(int x) {
-	const int OFFSET_TO_ALPHABET = 65;
-	return x + OFFSET_TO_ALPHABET;
-}
-
 void Part::printMappings() {
 	for (vector<int>::const_iterator i = mappings.begin(); i != mappings.end();
 			++i) {
@@ -39,13 +35,4 @@ void Part::printMappings() {
 	cout << endl;
 }
 
-char Part::map(int x){
-	return 'a';
-}
-
-char Part::reflect(int x) {
-	// TODO throw exception when x < 0
-	// TODO REPLACE MAGIC NUMBERS
-	return mapToAlphabet((x + ALPHABET_BEGIN) % NUMBER_OF_ALPHABETS);
-}
 
