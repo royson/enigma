@@ -68,13 +68,15 @@ int main(int argc, char **argv) {
 				cout << "After plugboard: " << ch << endl;
 			}
 
+			int tmp;
 			//Rotors (Forward)
 			for (int i = 0; i < rotors.size(); i++) {
 				if (i == 0) {
 					ch = rotors[i]->map(ch, FORWARD);
 				} else {
-					ch = rotors[i]->map(ch - rotors[i - 1]->getRotation(),
-							FORWARD);
+					tmp = mapToNumber((ch - rotors[i - 1]->getRotation())+NUMBER_OF_ALPHABETS)
+							% NUMBER_OF_ALPHABETS;
+					ch = rotors[i]->map(mapToAlphabet(tmp), FORWARD);
 				}
 
 				if (DEBUG) {
@@ -95,8 +97,11 @@ int main(int argc, char **argv) {
 				if (i == 0) {
 					ch = rotors[i]->map(ch, BACKWARD);
 				} else {
-					ch = rotors[i]->map(ch, BACKWARD)
-							+ rotors[i - 1]->getRotation();
+					tmp = mapToNumber(
+							rotors[i]->map(ch, BACKWARD)
+									+ rotors[i - 1]->getRotation())
+							% NUMBER_OF_ALPHABETS;
+					ch = mapToAlphabet(tmp);
 				}
 
 				if (DEBUG) {
