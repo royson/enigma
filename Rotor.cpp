@@ -17,17 +17,8 @@ Rotor::~Rotor() {
 }
 
 char Rotor::map(char x, bool direction) {
-	//cout << "Rotation: " << rotation << endl;
-
-	//cout << "CHAR: " << x << endl;
 	int mapIndex = mapToNumber(x);
 	if (direction) {
-//		cout << "rotation: " << rotation << endl;
-//		cout << "mapIndex: " << mapIndex << endl;
-//		cout << "rotation+mapindex: " << mapIndex + rotation << endl;
-//		cout << "I: " << (mapIndex + rotation) % NUMBER_OF_ALPHABETS << endl;
-//		cout << "RETURNING: " <<
-//				(mappings[(mapIndex + rotation) % NUMBER_OF_ALPHABETS]) << endl;
 		return mapToAlphabet(
 				(mappings[(mapIndex + rotation) % NUMBER_OF_ALPHABETS]));
 	} else {
