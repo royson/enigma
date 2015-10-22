@@ -68,9 +68,15 @@ int main(int argc, char **argv) {
 				cout << "After plugboard: " << ch << endl;
 			}
 
-			//Rotors (Forward) (SINGLE ROUTER ONLY)
+			//Rotors (Forward)
 			for (int i = 0; i < rotors.size(); i++) {
-				ch = rotors[i]->map(ch, FORWARD);
+				if (i == 0) {
+					ch = rotors[i]->map(ch, FORWARD);
+				} else {
+					ch = rotors[i]->map(ch - rotors[i - 1]->getRotation(),
+							FORWARD);
+				}
+
 				if (DEBUG) {
 					cout << "After rotor " << i << ": " << ch << endl;
 				}
@@ -85,19 +91,34 @@ int main(int argc, char **argv) {
 			}
 
 			//Rotors (Inverse)
-			for (int i = rotors.size()-1; i >= 0; i--) {
-				ch = rotors[i]->map(ch, BACKWARD);
+			for (int i = rotors.size() - 1; i >= 0; i--) {
+				if (i == 0) {
+					ch = rotors[i]->map(ch, BACKWARD);
+				} else {
+					ch = rotors[i]->map(ch, BACKWARD)
+							+ rotors[i - 1]->getRotation();
+				}
+
 				if (DEBUG) {
 					cout << "After rotor inverse " << i << ": " << ch << endl;
 				}
 			}
 
+			//PlugBoard
 			ch = plugboard->map(ch);
 			if (DEBUG) {
 				cout << "After plugboard inverse: " << ch << endl;
 			}
 
-			cout << ch << endl;
+			//Rotation
+			if (rotors.size() > 0) {
+				int rotateRotor = 0;
+				while (rotors[rotateRotor]->rotate()) {
+					rotateRotor = (++rotateRotor) % rotors.size();
+				}
+			}
+
+			cout << ch;
 
 		}
 	}

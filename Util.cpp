@@ -13,7 +13,6 @@ int mapToNumber(char x) {
 }
 
 int reflect(int x) {
-	// TODO throw exception when x < 0
 	return (x + REFLECT_FORWARD) % NUMBER_OF_ALPHABETS;
 }
 

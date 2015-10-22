@@ -18,6 +18,10 @@ public:
 	Rotor(istringstream* iss);
 	virtual ~Rotor();
 	char map(char x, bool direction);
+	bool rotate();
+	int getRotation();
+private:
+	int rotation;
 };
 
 #endif /* ROTOR_HPP_ */

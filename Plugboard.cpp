@@ -17,7 +17,7 @@ char Plugboard::map(char x){
 	//Assuming that the plugboard has an even number of numbers
 	int searchValue = mapToNumber(x);
 	for (int i = 0; i < mappings.size(); i++) {
-		if(searchValue == x){
+		if(searchValue == mappings[i]){
 			if(i%2 == 0){
 				//if index is even, return the next element
 				return mapToAlphabet(mappings[i+1]);
