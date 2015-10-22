@@ -20,17 +20,18 @@ int main(int argc, char **argv) {
 	}
 
 	//Add the rotors
-	vector<Rotor *> rotors;
+	vector<tr1::shared_ptr<Rotor> > rotors;
 
 	int pbArg = argc - 1;
 
 	for (int i = 1; i < pbArg; i++) {
-		Rotor* rotor = new Rotor(readPart(argv[i]));
+		tr1::shared_ptr<Rotor> rotor(new Rotor(readPart(argv[i])));
 		rotors.push_back(rotor);
 	}
 
 	//Add the plugboard
-	Plugboard* plugboard = new Plugboard(readPart(argv[pbArg]));
+	tr1::shared_ptr<Plugboard> plugboard(
+			new Plugboard(readPart(argv[pbArg])));
 
 	//Accept input
 	char ch;
@@ -92,7 +93,6 @@ int main(int argc, char **argv) {
 		cout << ch;
 
 	}
-
 
 	return 0;
 }
