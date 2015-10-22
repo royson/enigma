@@ -1,6 +1,8 @@
-using namespace std;
 #include <cstdlib>
 #include "Util.hpp"
+#include <tr1/memory>
+
+using namespace std;
 
 //Shared Methods
 
@@ -21,7 +23,9 @@ istringstream* readPart(const char* filepath) {
 	ifstream filePart(filepath);
 	if (filePart.is_open()) {
 		getline(filePart, mappings);
-		istringstream* iss = new istringstream(mappings);
+
+		tr1::shared_ptr<istringstream> iss = new istringstream(
+				mappings);
 		return iss;
 	} else {
 		cerr << "Unable to open " << filepath << endl;

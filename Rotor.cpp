@@ -12,7 +12,8 @@ Rotor::Rotor(istringstream* iss) :
 	rotation = 0;
 }
 
-Rotor::~Rotor() {}
+Rotor::~Rotor() {
+}
 
 char Rotor::map(char x, bool direction) {
 	int mapIndex = mapToNumber(x);

@@ -25,16 +25,12 @@ int main(int argc, char **argv) {
 	int pbArg = argc - 1;
 
 	for (int i = 1; i < pbArg; i++) {
-		istringstream* iss = readPart(argv[i]);
 		Rotor* rotor = new Rotor(readPart(argv[i]));
-		delete iss;
 		rotors.push_back(rotor);
 	}
 
 	//Add the plugboard
-	istringstream* iss = readPart(argv[pbArg]);
-	Plugboard* plugboard = new Plugboard(iss);
-	delete iss;
+	Plugboard* plugboard = new Plugboard(readPart(argv[pbArg]));
 
 	//Accept input
 	char ch;
