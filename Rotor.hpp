@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Rotor : public Part{
+class Rotor: public Part {
 public:
 	Rotor(istringstream* iss);
 	virtual ~Rotor();

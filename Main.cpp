@@ -1,4 +1,3 @@
-// skeleton C++ file, you will need to edit this and other files to implement your enigma machine
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
@@ -12,8 +11,6 @@
 #include "Plugboard.hpp"
 
 using namespace std;
-
-int DEBUG = false;
 
 int main(int argc, char **argv) {
 	//Check if there is an least a plugboard
@@ -34,38 +31,21 @@ int main(int argc, char **argv) {
 		rotors.push_back(rotor);
 	}
 
-	if (DEBUG) {
-		for (vector<Rotor *>::const_iterator i = rotors.begin();
-				i != rotors.end(); ++i) {
-			Rotor* r = *i;
-			(*r).printMappings();
-		}
-	}
-
 	//Add the plugboard
 	istringstream* iss = readPart(argv[pbArg]);
 	Plugboard* plugboard = new Plugboard(iss);
 	delete iss;
 
-	if (DEBUG) {
-		(*plugboard).printMappings();
-	}
-
 	//Accept input
 	char ch;
 	while (cin >> ws >> ch) {
-		if (ch < ALPHABET_BEGIN || ch >= ALPHABET_BEGIN + NUMBER_OF_ALPHABETS) {
+		if (ch < ALPHABET_BEGIN
+				|| ch >= ALPHABET_BEGIN + NUMBER_OF_ALPHABETS) {
 			continue;
-		}
-		if (DEBUG) {
-			cout << "Input: " << ch << endl;
 		}
 
 		//PlugBoard
 		ch = plugboard->map(ch);
-		if (DEBUG) {
-			cout << "After plugboard: " << ch << endl;
-		}
 
 		int tmp;
 		//Rotors (Forward)
@@ -75,12 +55,9 @@ int main(int argc, char **argv) {
 			} else {
 				tmp = mapToNumber(
 						(ch - rotors[i - 1]->getRotation())
-								+ NUMBER_OF_ALPHABETS) % NUMBER_OF_ALPHABETS;
+								+ NUMBER_OF_ALPHABETS)
+						% NUMBER_OF_ALPHABETS;
 				ch = rotors[i]->map(mapToAlphabet(tmp), FORWARD);
-			}
-
-			if (DEBUG) {
-				cout << "After rotor " << i << ": " << ch << endl;
 			}
 		}
 
@@ -88,9 +65,6 @@ int main(int argc, char **argv) {
 		int reflectIndex = mapToNumber(ch);
 		reflectIndex = reflect(reflectIndex);
 		ch = mapToAlphabet(reflectIndex);
-		if (DEBUG) {
-			cout << "After reflect: " << ch << endl;
-		}
 
 		//Rotors (Inverse)
 		for (int i = rotors.size() - 1; i >= 0; i--) {
@@ -103,24 +77,17 @@ int main(int argc, char **argv) {
 						% NUMBER_OF_ALPHABETS;
 				ch = mapToAlphabet(tmp);
 			}
-
-			if (DEBUG) {
-				cout << "After rotor inverse " << i << ": " << ch << endl;
-			}
 		}
 
 		//PlugBoard
 		ch = plugboard->map(ch);
-		if (DEBUG) {
-			cout << "After plugboard inverse: " << ch << endl;
-		}
 
 		//Rotation
 		if (rotors.size() > 0) {
 			int rotateRotor = 0;
 			while (rotors[rotateRotor]->rotate()) {
 				rotateRotor = (++rotateRotor);
-				if(rotateRotor >= rotors.size()){
+				if (rotateRotor >= rotors.size()) {
 					break;
 				}
 			}

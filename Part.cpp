@@ -18,21 +18,18 @@ Part::Part(istringstream* iss) {
 	}
 }
 
-Part::~Part() {
-	// TODO Auto-generated destructor stub
-}
+Part::~Part() {}
 
 vector<int> Part::getMappings() {
 	return mappings;
 }
 
 void Part::printMappings() {
-	for (vector<int>::const_iterator i = mappings.begin(); i != mappings.end();
-			++i) {
+	for (vector<int>::const_iterator i = mappings.begin();
+			i != mappings.end(); ++i) {
 		int x = *i;
 		cout << mapToAlphabet(x) << ' ';
 	}
 	cout << endl;
 }
-
 

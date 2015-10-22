@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Plugboard : public Part{
+class Plugboard: public Part {
 public:
 	Plugboard(istringstream* iss);
 	virtual ~Plugboard();

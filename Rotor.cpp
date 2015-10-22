@@ -12,17 +12,14 @@ Rotor::Rotor(istringstream* iss) :
 	rotation = 0;
 }
 
-Rotor::~Rotor() {
-	// TODO Auto-generated destructor stub
-}
+Rotor::~Rotor() {}
 
 char Rotor::map(char x, bool direction) {
-	//cout << "ROTATION: " << rotation << endl;
-
 	int mapIndex = mapToNumber(x);
 	if (direction) {
 		return mapToAlphabet(
-				(mappings[(mapIndex + rotation) % NUMBER_OF_ALPHABETS]));
+				(mappings[(mapIndex + rotation)
+						  % NUMBER_OF_ALPHABETS]));
 	} else {
 		//handles negative numbers as well
 		for (int i = 0; i < mappings.size(); i++) {

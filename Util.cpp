@@ -21,7 +21,6 @@ istringstream* readPart(const char* filepath) {
 	ifstream filePart(filepath);
 	if (filePart.is_open()) {
 		getline(filePart, mappings);
-		//std::shared_ptr<istringstream> iss (new istringstream(mappings));
 		istringstream* iss = new istringstream(mappings);
 		return iss;
 	} else {
