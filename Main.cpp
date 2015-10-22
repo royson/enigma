@@ -53,7 +53,7 @@ int main(int argc, char **argv) {
 
 	//Accept input
 	char ch;
-	while (cin >> ch) {
+	while (cin >> ws >> ch) {
 		if (ch < ALPHABET_BEGIN || ch >= ALPHABET_BEGIN + NUMBER_OF_ALPHABETS) {
 			cerr << "Please enter a capital letter." << endl;
 			exit(EXIT_FAILURE);
