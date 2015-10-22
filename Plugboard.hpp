@@ -17,6 +17,7 @@ class Plugboard : public Part{
 public:
 	Plugboard(istringstream* iss);
 	virtual ~Plugboard();
+	char map(char x);
 };
 
 #endif /* PLUGBOARD_HPP_ */

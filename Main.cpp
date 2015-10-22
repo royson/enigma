@@ -61,6 +61,13 @@ int main(int argc, char **argv) {
 			if (DEBUG) {
 				cout << "Input: " << ch << endl;
 			}
+
+			//PlugBoard
+			ch = plugboard->map(ch);
+			if (DEBUG) {
+				cout << "After plugboard: " << ch << endl;
+			}
+
 			//Rotors (Forward) (SINGLE ROUTER ONLY)
 			for (int i = 0; i < rotors.size(); i++) {
 				ch = rotors[i]->map(ch, FORWARD);
@@ -78,11 +85,16 @@ int main(int argc, char **argv) {
 			}
 
 			//Rotors (Inverse)
-			for (int i = 0; i < rotors.size(); i++) {
+			for (int i = rotors.size()-1; i >= 0; i--) {
 				ch = rotors[i]->map(ch, BACKWARD);
 				if (DEBUG) {
 					cout << "After rotor inverse " << i << ": " << ch << endl;
 				}
+			}
+
+			ch = plugboard->map(ch);
+			if (DEBUG) {
+				cout << "After plugboard inverse: " << ch << endl;
 			}
 
 			cout << ch << endl;

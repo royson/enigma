@@ -19,7 +19,11 @@ char Rotor::map(char x, bool direction){
 	if(direction){
 		return mapToAlphabet(mappings[mapIndex]);
 	}else{
-		return mapToAlphabet(mappings[NUMBER_OF_ALPHABETS-mapIndex]);
+		for (int i = 0; i < mappings.size(); i++) {
+			if(mappings[i] == mapIndex){
+				return mapToAlphabet(i);
+			}
+		}
 	}
 
 }
