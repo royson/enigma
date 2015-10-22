@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
 			} else {
 				tmp = mapToNumber(
 						(ch - rotors[i - 1]->getRotation())
-								+ NUMBER_OF_ALPHABETS)
+						+ NUMBER_OF_ALPHABETS)
 						% NUMBER_OF_ALPHABETS;
 				ch = rotors[i]->map(mapToAlphabet(tmp), FORWARD);
 			}
@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
 			} else {
 				tmp = mapToNumber(
 						rotors[i]->map(ch, BACKWARD)
-								+ rotors[i - 1]->getRotation())
+						+ rotors[i - 1]->getRotation())
 						% NUMBER_OF_ALPHABETS;
 				ch = mapToAlphabet(tmp);
 			}

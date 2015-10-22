@@ -27,7 +27,7 @@ char Rotor::map(char x, bool direction) {
 			if (mappings[i] == mapIndex) {
 				return mapToAlphabet(
 						(i - rotation + NUMBER_OF_ALPHABETS)
-								% NUMBER_OF_ALPHABETS);
+						% NUMBER_OF_ALPHABETS);
 			}
 		}
 	}
